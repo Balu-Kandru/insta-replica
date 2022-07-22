@@ -37,9 +37,7 @@ mongoose.connect("mongodb+srv://Balu_Kandru:Balu1998@instagram.anvjmni.mongodb.n
 
 
 
-app.get("/wishes",(req,res)=>{
-    res.send("hello")
-})
+
 
 app.post("/post",(req,res)=>{
     upload(req,res,(err)=>{
