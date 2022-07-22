@@ -1,3 +1,3 @@
 # Insta-Replica
-#deployed on site
+#deployed on
 https://insta-replica-10x.herokuapp.com
