@@ -6,53 +6,14 @@ const postModel = require("./model/post")
 const app=express()
 const fs=require("fs")
 const cors = require("cors");
-//const url="http://localhost:3000"
-//const heroku="https://insta-replica-10x.herokuapp.com"
 
 //middleware
 app.use(cors());
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
-});
-
-
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 
-// const allowlist = ['https://insta-replica-10x.herokuapp.com/postview'];
 
-//     const corsOptionsDelegate = (req, callback) => {
-//     let corsOptions;
-
-//     let isDomainAllowed = allowlist.indexOf(req.header('Origin')) !== -1;
-//     if (isDomainAllowed) {
-//         // Enable CORS for this request
-//         corsOptions = { origin: true }
-//     } else {
-//         // Disable CORS for this request
-//         corsOptions = { origin: false }
-//     }
-//     callback(null, corsOptions)
-// }
-
-// app.use(cors(corsOptionsDelegate));
-
-// var allowlist = ['https://insta-replica-10x.herokuapp.com/']
-// var corsOptionsDelegate = function (req, callback) {
-//   var corsOptions;
-//   if (allowlist.indexOf(req.header('Origin')) !== -1) {
-//     corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
-//   } else {
-//     corsOptions = { origin: false } // disable CORS for this request
-//   }
-//   callback(null, corsOptions) // callback expects two parameters: error and options
-// }
 //storage
 const Storage=multer.diskStorage({
     destination:"uploads",
@@ -68,9 +29,7 @@ const upload=multer({
 
 
 
-
-
-mongoose.connect("mongodb+srv://Balu_Kandru:Balu1998@instagram.anvjmni.mongodb.net/instagram?retryWrites=true&w=majority",()=>{
+mongoose.connect("mongodb+srv://Balu_Kandru:Balu1998@instagram.anvjmni.mongodb.net/datainit?retryWrites=true&w=majority",()=>{
     console.log("connected to db")
 },(err)=>{
     console.log(err)
@@ -84,7 +43,6 @@ app.get("/wishes",(req,res)=>{
 
 app.post("/post",(req,res)=>{
     upload(req,res,(err)=>{
-        //res.header('Access-Control-Allow-Origin','https://insta-replica-10x.herokuapp.com' );
         if(err){
             console.log(err)
         }else{
@@ -106,11 +64,8 @@ app.post("/post",(req,res)=>{
         }
     })
 })
-//cors(corsOptionsDelegate)
 
 app.get("/",(req,res)=>{
-    res.header("Access-Control-Allow-Origin", "https://insta-replica-10x.herokuapp.com");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     try{
         postModel.find().sort({_id:-1}).then((allData)=>{
             res.status(200).json(allData)

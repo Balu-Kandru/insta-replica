@@ -1,13 +1,11 @@
 import Header from "./header"
 import axios from "axios"
 import { useState,useEffect } from "react"
-//const address="http://localhost:3001/";
-const heroku="https://server-for-insta-10x.herokuapp.com";
 
 const Postview =()=>{
     const [data,setpost]=useState([])
     useEffect(()=>{
-        axios.get(heroku)
+        axios.get('https://server-for-my-first-app.herokuapp.com')
         .then((res)=>{setpost(res.data)})
         .catch((err)=>{console.log(err)})
     },[])

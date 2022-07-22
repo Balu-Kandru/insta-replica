@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import { useState } from "react"
 import Moment from 'moment';
-const address="http://localhost:3001/post";
-const herokus="https://server-for-insta-10x.herokuapp.com/post"
+//const address="http://localhost:3001/post";
+//const herokus="https://server-for-insta-10x.herokuapp.com/post"
 
 const Form=()=>{
     const date = Moment().format("DD MMM YYYY");
@@ -25,7 +25,7 @@ const Form=()=>{
         formData.append('location',data.location)
         formData.append('description',data.description)
         formData.append('date',date)
-        axios.post(herokus,formData,{headers:{"Content-type":"multipart/form-data"},}).then((res)=>{
+        axios.post('https://server-for-my-first-app.herokuapp.com/post',formData,{headers:{"Content-type":"multipart/form-data"},}).then((res)=>{
             console.log("success")
             navigate("/postview")
         }).catch((err)=>{
