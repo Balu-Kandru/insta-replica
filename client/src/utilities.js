@@ -1,0 +1,1 @@
+export const baseUrl = process.env.baseUrl || 'http://localhost:3001/'

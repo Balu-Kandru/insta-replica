@@ -1,11 +1,12 @@
 import Header from "./header"
 import axios from "axios"
 import { useState,useEffect } from "react"
+import { baseUrl } from "../utilities"
 
 const Postview =()=>{
     const [data,setpost]=useState([])
     useEffect(()=>{
-        axios.get('https://server-for-my-first-app.herokuapp.com')
+        axios.get(baseUrl)
         .then((res)=>{setpost(res.data)})
         .catch((err)=>{console.log(err)})
     },[])
